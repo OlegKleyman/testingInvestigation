@@ -24,8 +24,8 @@ describe('As an HR user I want to be able to manage employees', function() {
 		
 		it('And I want to view all employees', function(done){			
 			db.push("/employees", [{name: 'Oleg', id: 1, governmentId: '123abc'}, 
-														 {name: 'Lindsay', id: 2, governmentId: '456def'}],
-														 true);
+								{name: 'Lindsay', id: 2, governmentId: '456def'}],
+								true);
 
 			done();
 		});
@@ -37,8 +37,7 @@ describe('As an HR user I want to be able to manage employees', function() {
 			
 		it('Then I should get back all employees', function(done){
 			result.end(function(err, res) { 
-
-				expect(res.body.employees.length).to.equal(db.getData('/employees').length)
+				expect(res.body).to.eql(db.getData('/employees'))
 				done(); 
 			}); 
 		});
