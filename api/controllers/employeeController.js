@@ -8,6 +8,11 @@ module.exports = function(employeeService){
     getById: function(req, res) {
       const employee = employeeService.getById(req.params.id);
       return res.json(employee);
+    },
+    add: function(req, res){
+      var id = employeeService.add(req.body);
+
+      return res.json(id);
     }
   }
 }

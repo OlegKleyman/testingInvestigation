@@ -9,7 +9,8 @@ module.exports = function(app) {
 
   // employee Routes
   app.route('/employees')
-    .get(employee.getAll);
+    .get(employee.getAll)
+    .post(employee.add);
 
   app.route('/employees/:id')
     .get(employee.getById);

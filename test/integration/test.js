@@ -43,7 +43,7 @@ describe('As an HR user I want to be able to manage employees', function() {
 		});
 	});
 
-	describe('GET employees', function() { 
+	describe('GET employee', function() { 
 		var result;
 		
 		it('Given I am a user', function(done){
@@ -67,6 +67,38 @@ describe('As an HR user I want to be able to manage employees', function() {
 			result.end(function(err, res) { 
 				expect(res.body).to.eql(db.getData('/employees')[1])
 				done(); 
+			}); 
+		});
+	});
+
+	describe('add employee', function() { 
+		var result;
+		
+		it('Given I am a user', function(done){
+			done();
+		});
+		
+		it('And I want to add an employee', function(done){
+			db.push("/employees", [{name: 'Oleg', id: 1, governmentId: '123abc'}, 
+								{name: 'Lindsay', id: 2, governmentId: '456def'}],
+								true);
+			
+			done();
+		});
+		
+		it('When I make an API POST request on /employees', function(done){
+			result = request(app).post('/employees').send({name: 'Walter', id: 3, governmentId: '1a1a1a1a'});
+
+			done();
+		});
+			
+		it('Then I should get back the added employee', function(done){
+			result.end(function(err, res) { 
+				// database needs to be reloaded to clear its cache
+				db.reload();
+				expect(db.getData('/employees')).that.deep.includes({name: 'Walter', id: 3, governmentId: '1a1a1a1a'});
+
+				done();
 			}); 
 		});
 	});
