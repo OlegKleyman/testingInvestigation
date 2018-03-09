@@ -1,5 +1,9 @@
 'use strict';
 
-exports.getAll = function(req, res) {
-  res.json({"ttt": "sds"})
-};
+module.exports = function(employeeService){
+  return {
+    getAll: function(req, res) {
+      return res.json(employeeService.getAll());
+    }
+  }
+}
