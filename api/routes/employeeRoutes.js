@@ -2,8 +2,6 @@
 var jsonDB = require('node-json-db');
 
 module.exports = function(app) {
-  console.log('222222222222222222');
-  console.log(app.configuration.databaseConnectionString);
   var database = new jsonDB(app.configuration.databaseConnectionString, true, true);
   var employeeDataStore = require('../../lib/employeeDataStore')(database);
   var employeeService = require('../../lib/employeeService')(employeeDataStore);
@@ -12,4 +10,7 @@ module.exports = function(app) {
   // employee Routes
   app.route('/employees')
     .get(employee.getAll);
+
+  app.route('/employees/:id')
+    .get(employee.getById);
 };

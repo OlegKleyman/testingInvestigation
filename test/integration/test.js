@@ -15,7 +15,7 @@ after(function () {
 });
 	
 describe('As an HR user I want to be able to manage employees', function() {
-  describe('GET employees', function() { 
+	describe('GET employees', function() { 
 		var result;
 		
 		it('Given I am a user', function(done){
@@ -41,5 +41,33 @@ describe('As an HR user I want to be able to manage employees', function() {
 				done(); 
 			}); 
 		});
-  });
+	});
+
+	describe('GET employees', function() { 
+		var result;
+		
+		it('Given I am a user', function(done){
+			done();
+		});
+		
+		it('And I want to view an employee', function(done){			
+			db.push("/employees", [{name: 'Oleg', id: 1, governmentId: '123abc'}, 
+								{name: 'Lindsay', id: 2, governmentId: '456def'}],
+								true);
+
+			done();
+		});
+		
+		it('When I make an API GET request on /employees/2', function(done){
+			result = request(app).get('/employees/2');
+			done();
+		});
+			
+		it('Then I should get back an employee with the ID of 2', function(done){
+			result.end(function(err, res) { 
+				expect(res.body).to.eql(db.getData('/employees')[1])
+				done(); 
+			}); 
+		});
+	});
 });

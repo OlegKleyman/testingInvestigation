@@ -16,4 +16,13 @@ describe('employeeService tests', function() {
 
         done();
     });
+
+    it('getById should return employee from the data store with the target ID', function(done) {
+        var testData = [{name: 'test', id: 1}, {name: 'test2', id: 2}];
+        var employeeService = getEmployeeService(getDataStore(testData));
+
+        expect(employeeService.getById(2)).to.equal(testData[1]);
+
+        done();
+    });
 });
