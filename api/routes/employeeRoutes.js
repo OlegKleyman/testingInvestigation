@@ -1,6 +1,7 @@
 'use strict';
 module.exports = function(app) {
-  var employee = require('../controllers/employeeController')({getAll: function(){return {getAll: []}}});
+  var employeeService = require('../../lib/employeeService')({getEmployeeService: function(){return []}});
+  var employee = require('../controllers/employeeController')(employeeService);
 
   // employee Routes
   app.route('/employees')
