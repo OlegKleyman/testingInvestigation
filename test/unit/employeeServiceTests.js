@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 var service = require('../../lib/employeeService');
 
 describe('employeeService tests', function() {
-    var getDataStore = seedData => ({getAll: () => seedData });
+    var getDataStore = seedData => ({getAll: () => seedData, getSingle: filter => seedData.find(filter) });
 
     var getEmployeeService = dataStore => service(dataStore);;
 
