@@ -7,6 +7,10 @@ module.exports = function(employeeService){
     },
     getById: function(req, res) {
       const employee = employeeService.getById(req.params.id);
+      if(!employee){
+        res.status(404);
+      }
+
       return res.json(employee);
     },
     add: function(req, res){

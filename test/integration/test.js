@@ -102,4 +102,31 @@ describe('As an HR user I want to be able to manage employees', function() {
 			}); 
 		});
 	});
+
+	describe('GET employee should return 404 when employee is not found', function() { 
+		var result;
+		
+		it('Given I am a user', function(done){
+			done();
+		});
+		
+		it('And I want to view an employee', function(done){			
+			db.push("/employees", [],
+								true);
+
+			done();
+		});
+		
+		it('When I make an API GET request on /employees/0', function(done){
+			result = request(app).get('/employees/0');
+			done();
+		});
+			
+		it('Then I should get back a 404 error', function(done){
+			result.end(function(err, res) { 
+				expect(res.status).to.eql(404)
+				done(); 
+			}); 
+		});
+	});
 });
