@@ -2,6 +2,6 @@
 
 module.exports = {
 	env: 'production',
-	databaseConnectionString: 'testdata',
+	databaseConnectionString: 'livedata',
 	port: process.env.PORT || 5000
 };
