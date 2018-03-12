@@ -14,6 +14,6 @@ routes(app); //register the route
 
 app.server = app.listen(port);
 
-console.log('todo list RESTful API server started on: ' + port);
+console.log('API server started on: ' + port);
 
 module.exports = app;
