@@ -62,3 +62,7 @@ typings/
 
 # babel
 dist
+
+# db files
+testdata.json
+livedata.json
